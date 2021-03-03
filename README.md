@@ -7,5 +7,4 @@ Latching a 7-segment display decoder with a testbench.
 Task 2: 
 Cascaded shift-register with a testbench.
 -
-Task 3:
-Testbench for a datapath sub-system.
+## Task 3: Testbench for a datapath sub-system.
