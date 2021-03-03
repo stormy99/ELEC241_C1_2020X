@@ -24,7 +24,14 @@ architecture v1 of seven_seg_decode is
 begin
 
 	process(input,reset,en)
+	variable n : integer := 0;
 	begin
+	
+	
+		if (n = 0) then
+			output <= "0000000";
+			n := 1;
+		end if;
 
 		if (en = '1') then
 
