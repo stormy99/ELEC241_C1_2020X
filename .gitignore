@@ -103,3 +103,4 @@ mbed-os
 *.xrf
 *.sft
 *.xrf
+A_SevenSeg/vlog.opt
