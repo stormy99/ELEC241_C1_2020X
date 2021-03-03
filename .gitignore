@@ -104,3 +104,4 @@ mbed-os
 *.sft
 *.xrf
 A_SevenSeg/simulation/modelsim/Task01-7seg_run_msim_rtl_vhdl.do
+A_SevenSeg/vlog.opt
