@@ -1,6 +1,9 @@
 # ELEC241_C1_2020X
-Objective: "To create and test a fully commented set of VHDL components that can be re-used by other engineers."
 Authors: Brandon Normington, Thomas Bazley
+
+Objective: "To create and test a fully commented set of VHDL components that can be re-used by other engineers."
+
+
 
 Task 1: 
 Latching a 7-segment display decoder with a testbench.
