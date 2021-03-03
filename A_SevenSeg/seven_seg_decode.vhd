@@ -26,7 +26,9 @@ begin
 	process(input,reset,en)
 	begin
 
-        case input is
+		if (en = '1') then
+
+			case input is
                 when "0000" => output <= "1111110";
                 when "0001" => output <= "0110000";
                 when "0010" => output <= "1101101";
@@ -45,6 +47,8 @@ begin
                 when "1111" => output <= "1000111";
                 when others => output <= "0000000";
             end case;
+			
+		end if;
 
         if (reset = '1') then
             output <= "0000000";
