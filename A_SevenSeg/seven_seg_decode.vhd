@@ -22,33 +22,33 @@ end entity;
 architecture v1 of seven_seg_decode is
 -- MODIFY THE CODE BELOW THIS LINE --
 begin
+
 	process(input,reset,en)
 	begin
 
-		if (en = '1') then
+        case input is
+                when "0000" => output <= "1111110";
+                when "0001" => output <= "0110000";
+                when "0010" => output <= "1101101";
+                when "0011" => output <= "1111001";
+                when "0100" => output <= "0110011";
+                when "0101" => output <= "1011011";
+                when "0110" => output <= "1011111";
+                when "0111" => output <= "1110000";
+                when "1000" => output <= "1111111";
+                when "1001" => output <= "1111011";
+                when "1010" => output <= "1110111";
+                when "1011" => output <= "0011111";
+                when "1100" => output <= "1001110";
+                when "1101" => output <= "0111101";
+                when "1110" => output <= "1001111";
+                when "1111" => output <= "1000111";
+                when others => output <= "0000000";
+            end case;
 
-			output <= "1111110" when input = "0000" else -- display "0"
-			     	  "0110000" when input = "0001" else -- display "1"
-				  "1101101" when input = "0010" else -- display "2"
-				  "1111001" when input = "0011" else -- display "3"
-				  "0110011" when input = "0100" else -- display "4"
-				  "1011011" when input = "0101" else -- display "5"
-			     	  "1011111" when input = "0110" else -- display "6"
-				  "1110000" when input = "0111" else -- display "7"
-				  "1111111" when input = "1000" else -- display "8"
-				  "1111011" when input = "1001" else -- display "9"
-	
-				  "1110111" when input = "1010" else -- display "A"
-			     	  "0011111" when input = "1011" else -- display "b"
-				  "1001110" when input = "1100" else -- display "C"
-				  "0111101" when input = "1101" else -- display "d"
-				  "1001111" when input = "1110" else -- display "E"
-				  "1000111" when input = "1111";     -- display "F"
-
-		end if;
-
-		if (reset = '1') then
-			output <= "0000000";
-		end if;
+        if (reset = '1') then
+            output <= "0000000";
+        end if;
+		
 	end process;
 end v1;
