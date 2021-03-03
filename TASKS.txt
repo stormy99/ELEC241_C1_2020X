@@ -1,0 +1,10 @@
+We have attempted the following tasks:
+
+x
+x
+x
+
+
+"List each task,
+state to what extent each task was completed/tested,
+give file names of components / associated test-benches" for this txt document.
