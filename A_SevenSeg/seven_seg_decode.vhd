@@ -22,26 +22,33 @@ end entity;
 architecture v1 of seven_seg_decode is
 -- MODIFY THE CODE BELOW THIS LINE --
 begin
+	process(input,reset,en)
+	begin
+
+		if (en = '1') then
+
+			output <= "1111110" when input = "0000" else -- display "0"
+			     	  "0110000" when input = "0001" else -- display "1"
+				  "1101101" when input = "0010" else -- display "2"
+				  "1111001" when input = "0011" else -- display "3"
+				  "0110011" when input = "0100" else -- display "4"
+				  "1011011" when input = "0101" else -- display "5"
+			     	  "1011111" when input = "0110" else -- display "6"
+				  "1110000" when input = "0111" else -- display "7"
+				  "1111111" when input = "1000" else -- display "8"
+				  "1111011" when input = "1001" else -- display "9"
 	
-	with input select
-		output <= "1111110" when "0000", -- display "0"
-		     	  "0110000" when "0001", -- display "1"
-			  "1101101" when "0010", -- display "2"
-			  "1111001" when "0011", -- display "3"
-			  "0110011" when "0100", -- display "4"
-			  "1011011" when "0101", -- display "5"
-		     	  "1011111" when "0110", -- display "6"
-			  "1110000" when "0111", -- display "7"
-			  "1111111" when "1000", -- display "8"
-			  "1111011" when "1001", -- display "9"
+				  "1110111" when input = "1010" else -- display "A"
+			     	  "0011111" when input = "1011" else -- display "b"
+				  "1001110" when input = "1100" else -- display "C"
+				  "0111101" when input = "1101" else -- display "d"
+				  "1001111" when input = "1110" else -- display "E"
+				  "1000111" when input = "1111";     -- display "F"
 
-			  "1110111" when "1010", -- display "A"
-		     	  "0011111" when "1011", -- display "b"
-			  "1001110" when "1100", -- display "C"
-			  "0111101" when "1101", -- display "d"
-			  "1111001" when "1110", -- display "E"
-			  "1000111" when "1111", -- display "F"
-			  
-			  "0000000" when others;
+		end if;
 
+		if (reset = '1') then
+			output <= "0000000";
+		end if;
+	end process;
 end v1;
