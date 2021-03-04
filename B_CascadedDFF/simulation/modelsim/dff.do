@@ -8,41 +8,29 @@ sim:/elec241_shift_register/data_in \
 sim:/elec241_shift_register/data_out
 
 force enable 0
-force clk 0
 force data_in 0
-run 100ps
+force clk 0
+run 50ps
+force clk 1
+run 50ps
 
 force enable 0
+force data_in 1
 force clk 0
-force data_in 1
-run 100ps
-
-force enable 0
+run 50ps
 force clk 1
-force data_in 0
-run 100ps
-
-force enable 0
-force clk 1
-force data_in 1
-run 100ps
+run 50ps
 
 force enable 1
+force data_in 0
 force clk 0
-force data_in 0
-run 100ps
+run 50ps
+force clk 1
+run 50ps
 
 force enable 1
+force data_in 1
 force clk 0
-force data_in 1
-run 100ps
-
-force enable 1
+run 50ps
 force clk 1
-force data_in 0
-run 100ps
-
-force enable 1
-force clk 1
-force data_in 1
-run 100ps
+run 50ps
