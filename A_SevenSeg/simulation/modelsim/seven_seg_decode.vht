@@ -33,8 +33,6 @@ BEGIN
 
 
 init : PROCESS
---	variable en : std_logic := '0';
---	variable reset : std_logic := '0';
 BEGIN
 	WAIT;                                                       
 END PROCESS init; 
@@ -42,9 +40,6 @@ END PROCESS init;
 
 always : PROCESS                                              
 	variable n : integer;
---	variable input : std_logic_vector(3 downto 0) := "0000";
---	variable en : std_logic := '0';
--- 	variable reset : std_logic := '0';
 BEGIN
 
 	input <= "0000";
