@@ -45,45 +45,126 @@ BEGIN
 	input <= "0000";
 	en <= '0';
 	reset <= '0';
+	wait for 1 ps;
+	if (output /= "0000000") then
+		assert false report "Unexpected output" & lf & 
+		"  input = " & integer'image(to_integer(unsigned(input))) & lf &
+		" enable = " & STD_LOGIC'image(en) & lf &
+		"  reset = " & STD_LOGIC'image(reset)
+		severity error;
+	end if;
+	wait for 1 ps;
 	
 	for n in 1 to 15 loop
-		wait for 2 ps;
 		input <= std_logic_vector(to_unsigned(n,4));
+		wait for 1 ps;
+		if (output /= "0000000") then
+			assert false report "Unexpected output" & lf & 
+			"  input = " & integer'image(to_integer(unsigned(input))) & lf &
+			"      n = " & integer'image(n) & lf &
+			" enable = " & STD_LOGIC'image(en) & lf &
+			"  reset = " & STD_LOGIC'image(reset)
+			severity error;
+		end if;
+		wait for 1 ps;
 	end loop;
 	
-	wait for 2 ps;
 	input <= "0000";
 	en <= '1';
+	wait for 1 ps;
+	if (output /= "1111110") then
+		assert false report "Unexpected output" & lf & 
+		"  input = " & integer'image(to_integer(unsigned(input))) & lf &
+		" enable = " & STD_LOGIC'image(en) & lf &
+		"  reset = " & STD_LOGIC'image(reset)
+		severity error;
+	end if;
+	wait for 1 ps;
 	
 	
 	for n in 1 to 15 loop
-		wait for 2 ps;
 		input <= std_logic_vector(to_unsigned(n,4));
+		wait for 1 ps;
+		if ((output /= "0110000" and n = 1)
+		or	(output /= "1101101" and n = 2)
+		or	(output /= "1111001" and n = 3)
+		or	(output /= "0110011" and n = 4)
+		or	(output /= "1011011" and n = 5)
+		or	(output /= "1011111" and n = 6)
+		or	(output /= "1110000" and n = 7)
+		or	(output /= "1111111" and n = 8)
+		or	(output /= "1111011" and n = 9)
+		or	(output /= "1110111" and n = 10)
+		or	(output /= "0011111" and n = 11)
+		or	(output /= "1001110" and n = 12)
+		or	(output /= "0111101" and n = 13)
+		or	(output /= "1001111" and n = 14)
+		or	(output /= "1000111" and n = 15)) then
+			assert false report "Unexpected output" & lf & 
+			"  input = " & integer'image(to_integer(unsigned(input))) & lf &
+			"      n = " & integer'image(n) & lf &
+			" enable = " & STD_LOGIC'image(en) & lf &
+			"  reset = " & STD_LOGIC'image(reset)
+			severity error;
+		end if;
+		wait for 1 ps;
 	end loop;
 	
-	wait for 2 ps;
 	input <= "0000";
 	en <= '0';
 	reset <= '1';
+	wait for 1 ps;
+	if (output /= "0000000") then
+		assert false report "Unexpected output" & lf & 
+		"  input = " & integer'image(to_integer(unsigned(input))) & lf &
+		" enable = " & STD_LOGIC'image(en) & lf &
+		"  reset = " & STD_LOGIC'image(reset)
+		severity error;
+	end if;
+	wait for 1 ps;
 	
 	
 	for n in 1 to 15 loop
-		wait for 2 ps;
 		input <= std_logic_vector(to_unsigned(n,4));
+		wait for 1 ps;
+		if (output /= "0000000") then
+			assert false report "Unexpected output" & lf & 
+			"  input = " & integer'image(to_integer(unsigned(input))) & lf &
+			"      n = " & integer'image(n) & lf &
+			" enable = " & STD_LOGIC'image(en) & lf &
+			"  reset = " & STD_LOGIC'image(reset)
+			severity error;
+		end if;
+		wait for 1 ps;
 	end loop;
 	
-	wait for 2 ps;
 	input <= "0000";
 	en <= '1';
 	reset <= '1';
+	wait for 1 ps;
+	if (output /= "0000000") then
+		assert false report "Unexpected output" & lf & 
+		"  input = " & integer'image(to_integer(unsigned(input))) & lf &
+		" enable = " & STD_LOGIC'image(en) & lf &
+		"  reset = " & STD_LOGIC'image(reset)
+		severity error;
+	end if;
+	wait for 1 ps;
 	
 	
 	for n in 1 to 15 loop
-		wait for 2 ps;
 		input <= std_logic_vector(to_unsigned(n,4));
+		wait for 1 ps;
+		if (output /= "0000000") then
+			assert false report "Unexpected output" & lf & 
+			"  input = " & integer'image(to_integer(unsigned(input))) & lf &
+			"      n = " & integer'image(n) & lf &
+			" enable = " & STD_LOGIC'image(en) & lf &
+			"  reset = " & STD_LOGIC'image(reset)
+			severity error;
+		end if;
+		wait for 1 ps;
 	end loop;
-
-	wait for 2 ps;
 	
 	WAIT;
 END PROCESS always;    
