@@ -46,7 +46,7 @@ BEGIN
 	en <= '0';
 	reset <= '0';
 	
-	for n in 1 to 16 loop
+	for n in 1 to 15 loop
 		wait for 2 ps;
 		input <= std_logic_vector(to_unsigned(n,4));
 	end loop;
@@ -56,7 +56,7 @@ BEGIN
 	en <= '1';
 	
 	
-	for n in 1 to 16 loop
+	for n in 1 to 15 loop
 		wait for 2 ps;
 		input <= std_logic_vector(to_unsigned(n,4));
 	end loop;
@@ -67,7 +67,7 @@ BEGIN
 	reset <= '1';
 	
 	
-	for n in 1 to 16 loop
+	for n in 1 to 15 loop
 		wait for 2 ps;
 		input <= std_logic_vector(to_unsigned(n,4));
 	end loop;
@@ -78,7 +78,7 @@ BEGIN
 	reset <= '1';
 	
 	
-	for n in 1 to 16 loop
+	for n in 1 to 15 loop
 		wait for 2 ps;
 		input <= std_logic_vector(to_unsigned(n,4));
 	end loop;
