@@ -27,7 +27,11 @@ begin
 
 	process(clk, enable, data_in)
 		begin
-			if(enable = '1') then 
+		
+			if(enable = '0' and clk = '0') then
+				data_out <= '0';
+			
+			elsif(enable = '1') then 
 			
 				if(rising_edge(clk)) then
 					data_out <= data_in;	
