@@ -25,13 +25,14 @@ end entity;
 architecture rtl of elec241_shift_register is
 begin
 
-	process(clk, data_in)
+	process(clk, enable, data_in)
 		begin
-			if(enable = '0') then null;
+			if(enable = '1') then 
 			
-				elsif(rising_edge(clk)) then
-				data_out <= data_in;
-					
+				if(rising_edge(clk)) then
+					data_out <= data_in;	
+				end if;
+				
 			end if;
 	end process;
 
