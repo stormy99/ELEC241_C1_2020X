@@ -1,23 +1,24 @@
 We have attempted the following tasks:
 
 
-A:
+TASK A [7-seg]:
 1- Completed truth table and boolean simplification (TASKA_1.png on repo).
 2- Completed component architecture (seven_seg_decode.vhd on repo, truthtable_7seg.do for initial workings)
 3- Exhaustive testing completed using ModelSim (seven_seg_decode.vht generates seven_seg_decode_vhd_tst)
 
 
-B:
+TASK B [Cascaded DFF]:
+1- Built with "Analysis & Synthesis" and selected "RTL Simulation" in Quartus to launch ModelSim.
+2-
+3-
 
 
-C:
-
-
-
-
-
+TASK C [Controller Datapath]:
+1-
+2-
+3-
 
 
 "List each task,
 state to what extent each task was completed/tested,
-give file names of components / associated test-benches" for this txt document.
+give file names of components / associated test-benches".

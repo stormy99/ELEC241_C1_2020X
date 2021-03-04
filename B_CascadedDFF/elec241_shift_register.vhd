@@ -23,11 +23,16 @@ entity elec241_shift_register is
 end entity;
 
 architecture rtl of elec241_shift_register is
-
-
-
 begin
 
-
+	process(clk, data_in)
+		begin
+			if(enable = '0') then null;
+			
+				elsif(rising_edge(clk)) then
+				data_out <= data_in;
+					
+			end if;
+	end process;
 
 end rtl;
