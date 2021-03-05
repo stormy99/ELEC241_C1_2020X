@@ -49,7 +49,7 @@ BEGIN
 
 	for n in 1 to 32 loop	--two loops through all logic combinations
 
-		if ((n + 1) mod 2) = 0 then				--4 ps toggle + 2 ps offset
+		if (n mod 2) = 0 then				--4 ps toggle
 			wait for 2 ps;
 			clk <= not clk;
 		end if;
@@ -79,7 +79,7 @@ BEGIN
 			end if;
 		end if;
 
-		if ((n + 1) mod 2) = 0 then				--4 ps toggle + 2 ps offset
+		if (n mod 2) = 0 then				--4 ps toggle
 
 			--uncomment to print output_old and data_out
 			--report "output_old = " & integer'image(output_old) & lf &
