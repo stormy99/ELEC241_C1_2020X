@@ -13,6 +13,32 @@ SIGNAL input : STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL output : STD_LOGIC_VECTOR(6 DOWNTO 0);
 SIGNAL reset : STD_LOGIC;
 
+procedure FOR_ERROR_CHECK (expected_output : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+						   n : IN integer;
+						   signal output : IN STD_LOGIC_VECTOR(6 DOWNTO 0)) is
+begin
+	if (output /= expected_output) then
+		assert false report "Unexpected output" & lf & 
+		"  input = " & integer'image(to_integer(unsigned(input))) & lf &
+		"      n = " & integer'image(n) & lf &
+		" enable = " & STD_LOGIC'image(en) & lf &
+		"  reset = " & STD_LOGIC'image(reset)
+		severity error;
+	end if;
+end FOR_ERROR_CHECK;
+
+procedure ERROR_CHECK (expected_output : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+					   signal output : IN STD_LOGIC_VECTOR(6 DOWNTO 0)) is
+begin
+	if (output /= expected_output) then
+		assert false report "Unexpected output" & lf & 
+		"  input = " & integer'image(to_integer(unsigned(input))) & lf &
+		" enable = " & STD_LOGIC'image(en) & lf &
+		"  reset = " & STD_LOGIC'image(reset)
+		severity error;
+	end if;
+end ERROR_CHECK;
+
 COMPONENT seven_seg_decode
 	PORT (
 	en : IN STD_LOGIC;
@@ -46,39 +72,20 @@ BEGIN
 	en <= '0';
 	reset <= '0';
 	wait for 1 ps;
-	if (output /= "0000000") then
-		assert false report "Unexpected output" & lf & 
-		"  input = " & integer'image(to_integer(unsigned(input))) & lf &
-		" enable = " & STD_LOGIC'image(en) & lf &
-		"  reset = " & STD_LOGIC'image(reset)
-		severity error;
-	end if;
+	ERROR_CHECK("0000000", output);
 	wait for 1 ps;
 	
 	for n in 1 to 15 loop
 		input <= std_logic_vector(to_unsigned(n,4));
 		wait for 1 ps;
-		if (output /= "0000000") then
-			assert false report "Unexpected output" & lf & 
-			"  input = " & integer'image(to_integer(unsigned(input))) & lf &
-			"      n = " & integer'image(n) & lf &
-			" enable = " & STD_LOGIC'image(en) & lf &
-			"  reset = " & STD_LOGIC'image(reset)
-			severity error;
-		end if;
+		FOR_ERROR_CHECK("0000000", n, output);
 		wait for 1 ps;
 	end loop;
 	
 	input <= "0000";
 	en <= '1';
 	wait for 1 ps;
-	if (output /= "1111110") then
-		assert false report "Unexpected output" & lf & 
-		"  input = " & integer'image(to_integer(unsigned(input))) & lf &
-		" enable = " & STD_LOGIC'image(en) & lf &
-		"  reset = " & STD_LOGIC'image(reset)
-		severity error;
-	end if;
+	ERROR_CHECK("1111110", output);
 	wait for 1 ps;
 	
 	
@@ -114,27 +121,14 @@ BEGIN
 	en <= '0';
 	reset <= '1';
 	wait for 1 ps;
-	if (output /= "0000000") then
-		assert false report "Unexpected output" & lf & 
-		"  input = " & integer'image(to_integer(unsigned(input))) & lf &
-		" enable = " & STD_LOGIC'image(en) & lf &
-		"  reset = " & STD_LOGIC'image(reset)
-		severity error;
-	end if;
+	ERROR_CHECK("0000000", output);
 	wait for 1 ps;
 	
 	
 	for n in 1 to 15 loop
 		input <= std_logic_vector(to_unsigned(n,4));
 		wait for 1 ps;
-		if (output /= "0000000") then
-			assert false report "Unexpected output" & lf & 
-			"  input = " & integer'image(to_integer(unsigned(input))) & lf &
-			"      n = " & integer'image(n) & lf &
-			" enable = " & STD_LOGIC'image(en) & lf &
-			"  reset = " & STD_LOGIC'image(reset)
-			severity error;
-		end if;
+		FOR_ERROR_CHECK("0000000", n, output);
 		wait for 1 ps;
 	end loop;
 	
@@ -142,27 +136,14 @@ BEGIN
 	en <= '1';
 	reset <= '1';
 	wait for 1 ps;
-	if (output /= "0000000") then
-		assert false report "Unexpected output" & lf & 
-		"  input = " & integer'image(to_integer(unsigned(input))) & lf &
-		" enable = " & STD_LOGIC'image(en) & lf &
-		"  reset = " & STD_LOGIC'image(reset)
-		severity error;
-	end if;
+	ERROR_CHECK("0000000", output);
 	wait for 1 ps;
 	
 	
 	for n in 1 to 15 loop
 		input <= std_logic_vector(to_unsigned(n,4));
 		wait for 1 ps;
-		if (output /= "0000000") then
-			assert false report "Unexpected output" & lf & 
-			"  input = " & integer'image(to_integer(unsigned(input))) & lf &
-			"      n = " & integer'image(n) & lf &
-			" enable = " & STD_LOGIC'image(en) & lf &
-			"  reset = " & STD_LOGIC'image(reset)
-			severity error;
-		end if;
+		FOR_ERROR_CHECK("0000000", n, output);
 		wait for 1 ps;
 	end loop;
 	
