@@ -107,3 +107,5 @@ A_SevenSeg/simulation/modelsim/Task01-7seg_run_msim_rtl_vhdl.do
 A_SevenSeg/vlog.opt
 A_SevenSeg/simulation/modelsim/Task01-7seg_run_msim_rtl_vhdl.do
 A_SevenSeg/simulation/modelsim/vish_stacktrace.vstf
+B_CascadedDFF/simulation/modelsim/CascadedDFF_run_msim_rtl_vhdl.do
+C_ControllerDatapath/simulation/modelsim/ControllerDatapath_run_msim_rtl_vhdl.do

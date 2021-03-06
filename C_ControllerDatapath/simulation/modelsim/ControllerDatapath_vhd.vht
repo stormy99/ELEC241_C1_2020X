@@ -87,7 +87,12 @@ BEGIN
 
 init : PROCESS                                               
 -- variable declarations                                     
-BEGIN                                                        
+BEGIN
+
+	RESET <= '1';
+	wait for 1ps;
+	RESET <= '0';
+                                                        
         WAIT;                                           
 END PROCESS init;                                           
 
