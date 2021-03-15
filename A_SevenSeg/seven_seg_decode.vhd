@@ -28,8 +28,6 @@ begin
 	
 		if (reset = '1') then
 			output <= "0000000";
-      end if;
-
 
 		elsif (en = '1') then
 			case input is
