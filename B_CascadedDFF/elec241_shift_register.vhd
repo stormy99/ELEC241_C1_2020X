@@ -30,7 +30,6 @@ end architecture logic;
 
 
 
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -58,33 +57,26 @@ architecture rtl of elec241_shift_register is
 
 	component d_flip_flop
 		port (
-			clk	: in std_logic;
-			D : in std_logic;
-			Q : out std_logic
+			clk	: in std_ulogic;
+			D : in std_ulogic;
+			Q : out std_ulogic
 		);
 	end component;
 	
-	component my_AND
-		port (
-			A : in std_logic;
-			B : in std_logic;
-			Y : out std_logic
-		);
-	end component;
-
-	signal Q0S, Q1S, Q2S, Q3S : std_logic;
+	signal bit_Q : std_logic_vector(0 to NUM_STAGES);
 
 begin
 
-	U1 : d_flip_flop port map (clk, data_in, Q0S);
-	U2 : d_flip_flop port map (clk, Q0S, Q1S);
-	U3 : d_flip_flop port map (clk, Q1S, Q2S);
-	U4 : d_flip_flop port map (clk, Q2S, Q3S);
+	U0 : d_flip_flop port map (clk, data_in, bit_Q(0));				--first flip flop
+
+	GEN: for i in 0 to (NUM_STAGES - 2) generate
+		UX : d_flip_flop port map (clk, bit_Q(i), bit_Q(i + 1));	--generate remaining flip flops
+	end generate GEN;
 	
-	Q0 <= Q0S;
-	Q1 <= Q1S;
-	Q2 <= Q2S;
-	Q3 <= Q3S;
-	data_out <= Q3S;
+	Q0 <= bit_Q(0);							--set pins equal to first four flip flop signals
+	Q1 <= bit_Q(1);
+	Q2 <= bit_Q(2);
+	Q3 <= bit_Q(3);
+	data_out <= bit_Q(NUM_STAGES - 1);		--data_in shifted by NUM_STAGES
 	
 end rtl;
