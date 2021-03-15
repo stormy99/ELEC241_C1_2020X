@@ -19,9 +19,6 @@ ARCHITECTURE v1 OF elec241_shift_register_test IS
 	SIGNAL data_out : STD_LOGIC := '0';
 
 	COMPONENT elec241_shift_register
-		GENERIC (
-			NUM_STAGES : NATURAL := 4
-		);
 
 		PORT (
 			clk : IN STD_LOGIC;
