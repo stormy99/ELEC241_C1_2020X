@@ -90,13 +90,35 @@ init : PROCESS
 BEGIN
 
 	RESET <= '1';
+	
+	DATA <= "00000000";
+	EN_ACC <= '0';
+	EN_R1 <= '0';
+	EN_R2 <= '0';
+	SEL_ACC <= "00";
+	SEL_R1 <= "00";
+	SEL_R2 <= "00";
+	SEL_SUM <= "00";
+	
 	wait for 1ps;
 	RESET <= '0';
                                                         
-        WAIT;                                           
-END PROCESS init;                                           
+   WAIT;                                           
+END PROCESS init;  
 
-
+clk_process : PROCESS
+		VARIABLE ck : STD_LOGIC;
+BEGIN
+	
+	ck := '1';
+    for n in 1 to 30 loop
+        wait for 1 ps;
+        ck := not ck;
+        CLK <= ck;
+    end loop;
+	
+	WAIT;
+END PROCESS clk_process;                                       
                                           
 always : PROCESS                                              
 -- optional sensitivity list                                  
@@ -106,6 +128,5 @@ BEGIN
 
 	WAIT;                                                        
 END PROCESS always;  
-
                                         
 END ControllerDatapath_vhd_arch;
