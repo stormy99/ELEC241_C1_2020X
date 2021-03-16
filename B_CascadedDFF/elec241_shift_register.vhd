@@ -44,10 +44,7 @@ entity elec241_shift_register is
 		clk : in std_logic;
 		enable : in std_logic;
 		data_in : in std_logic;
-		Q0 : out std_logic;
-		Q1 : out std_logic;
-		Q2: out std_logic;
-		Q3 : out std_logic;
+		Q : out std_logic_vector(NUM_STAGES - 1 downto 0);
 		data_out : out std_logic
 	);
 
@@ -63,20 +60,20 @@ architecture rtl of elec241_shift_register is
 		);
 	end component;
 	
-	signal bit_Q : std_logic_vector(0 to NUM_STAGES);
+	signal bit_Q : std_logic_vector(NUM_STAGES - 1 downto 0);
 
 begin
 
-	U0 : d_flip_flop port map (clk, data_in, bit_Q(0));				--first flip flop
+	U0 : d_flip_flop port map (clk, data_in, bit_Q(NUM_STAGES - 1));				--first flip flop
 
-	GEN: for i in 0 to (NUM_STAGES - 2) generate
-		UX : d_flip_flop port map (clk, bit_Q(i), bit_Q(i + 1));	--generate remaining flip flops
-	end generate GEN;
+	DFF: for i in 1 to (NUM_STAGES - 1) generate
+		UX : d_flip_flop port map (clk, bit_Q(NUM_STAGES - i), bit_Q(NUM_STAGES - i - 1));	--generate remaining flip flops
+	end generate DFF;
 	
-	Q0 <= bit_Q(0);							--set pins equal to first four flip flop signals
-	Q1 <= bit_Q(1);
-	Q2 <= bit_Q(2);
-	Q3 <= bit_Q(3);
-	data_out <= bit_Q(NUM_STAGES - 1);		--data_in shifted by NUM_STAGES
+	SIGNALS: for i in 0 to (NUM_STAGES - 1) generate
+		Q(NUM_STAGES - i - 1) <= bit_Q(NUM_STAGES - i - 1);			--set pins equal to flip flop signals
+	end generate SIGNALS;
+	
+	data_out <= bit_Q(0);		--data_in shifted by NUM_STAGES
 	
 end rtl;
