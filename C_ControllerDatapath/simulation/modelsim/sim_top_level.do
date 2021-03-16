@@ -15,3 +15,4 @@ sim:/controllerdatapath_vhd_tst/SEL_R1 \
 sim:/controllerdatapath_vhd_tst/SEL_R2 \
 sim:/controllerdatapath_vhd_tst/SEL_SUM
 
+run 40 ps

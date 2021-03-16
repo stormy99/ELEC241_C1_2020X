@@ -89,19 +89,9 @@ init : PROCESS
 -- variable declarations                                     
 BEGIN
 
-	RESET <= '1';
-	
-	DATA <= "00000000";
-	EN_ACC <= '0';
-	EN_R1 <= '0';
-	EN_R2 <= '0';
-	SEL_ACC <= "00";
-	SEL_R1 <= "00";
-	SEL_R2 <= "00";
-	SEL_SUM <= "00";
-	
-	wait for 1ps;
 	RESET <= '0';
+	wait for 1 ps;
+	RESET <= '1';
                                                         
    WAIT;                                           
 END PROCESS init;  
@@ -112,20 +102,73 @@ BEGIN
 	
 	ck := '1';
     for n in 1 to 30 loop
-        wait for 1 ps;
         ck := not ck;
+		  wait for 1 ps;
         CLK <= ck;
     end loop;
 	
 	WAIT;
-END PROCESS clk_process;                                       
-                                          
-always : PROCESS                                              
--- optional sensitivity list                                  
--- (        )                                                 
--- variable declarations                                      
-BEGIN                                                         
+END PROCESS clk_process;   
+                                                                   
+always : PROCESS                                                                                 
+BEGIN  
 
+	wait until rising_edge(RESET);
+	
+	-- 3A: (R1 <- 00000010)
+	EN_R1 <= '1';
+	DATA <= "00000010";
+	SEL_R1 <= "00";
+	wait until rising_edge(CLK);
+	
+	-- 3B: (R2 <- R1)
+	EN_R2 <= '1';
+	SEL_R2 <= "01";
+	wait until rising_edge(CLK);
+	
+	-- 3C: (ACC <- 00000001)
+	EN_R1 <= '0';
+	EN_R2 <= '0';
+	EN_ACC <= '1';
+	DATA <= "00000001";
+	SEL_ACC <= "00";
+	wait until rising_edge(CLK);
+	
+	-- 3D: (R1 <- ACC)
+	EN_R1 <= '1'; 			
+	SEL_R1 <= "01";	--double check this, 1 clk cycle?
+	wait until rising_edge(CLK);
+	
+	-- 3E: (ACC <- ACC + R1)
+	SEL_SUM <= "01";
+	SEL_ACC <= "11";
+	wait until rising_edge(CLK);
+	
+	-- 3F: (R1 <- 01000000), (R2 <- 00000000), (ACC <- 00000001) [simultaneously]
+	EN_R1 <= '1';
+	DATA <= "01000000";
+	SEL_R1 <= "00";
+	EN_R1 <= '0';
+	
+	EN_R2 <= '1';
+	DATA <= "00000000";
+	SEL_R2 <= "00";
+	EN_R2 <= '0';
+	
+	EN_ACC <= '1';
+	DATA <= "00000001";
+	SEL_ACC <= "00";
+	EN_ACC <= '0';
+	wait until rising_edge(CLK);
+	
+	-- 3G: (ACC <- ACC + R2), (R2 <- R1), (R1 <- 00100000) [simultaneously]
+	
+	wait until rising_edge(CLK);
+	
+	--  4: (ACC <- [00000001 + 00000001 + 10000000 + 01000000 + 00000001 + 00100000])
+	
+	wait until rising_edge(CLK);
+	
 	WAIT;                                                        
 END PROCESS always;  
                                         
