@@ -1,8 +1,6 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 USE ieee.numeric_std.all;
---USE ieee.numeric_bit.all;
---USE IEEE.std_logic_unsigned.all;
 
 ENTITY elec241_shift_register_test IS
 END elec241_shift_register_test;
