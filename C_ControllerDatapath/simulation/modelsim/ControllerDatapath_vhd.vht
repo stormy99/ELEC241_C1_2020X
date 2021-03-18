@@ -136,7 +136,7 @@ BEGIN
 	
 	-- 3D: (R1 <- ACC)
 	EN_R1 <= '1'; 			
-	SEL_R1 <= "01";	--double check this, 1 clk cycle?
+	SEL_R1 <= "01";
 	wait until rising_edge(CLK);
 	
 	-- 3E: (ACC <- ACC + R1)
@@ -145,20 +145,15 @@ BEGIN
 	wait until rising_edge(CLK);
 	
 	-- 3F: (R1 <- 01000000), (R2 <- 00000000), (ACC <- 00000001) [simultaneously]
+	EN_ACC <= '1'; 			
+	SEL_ACC <= "01";
+	
 	EN_R1 <= '1';
 	DATA <= "01000000";
 	SEL_R1 <= "00";
-	EN_R1 <= '0';
 	
 	EN_R2 <= '1';
-	DATA <= "00000000";
-	SEL_R2 <= "00";
-	EN_R2 <= '0';
-	
-	EN_ACC <= '1';
-	DATA <= "00000001";
-	SEL_ACC <= "00";
-	EN_ACC <= '0';
+	SEL_R2 <= "11";
 	wait until rising_edge(CLK);
 	
 	-- 3G: (ACC <- ACC + R2), (R2 <- R1), (R1 <- 00100000) [simultaneously]
