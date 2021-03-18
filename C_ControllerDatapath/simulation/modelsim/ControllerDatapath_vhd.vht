@@ -157,7 +157,16 @@ BEGIN
 	wait until rising_edge(CLK);
 	
 	-- 3G: (ACC <- ACC + R2), (R2 <- R1), (R1 <- 00100000) [simultaneously]
+	SEL_SUM <= "10";
+	SEL_ACC <= "11";
+	EN_ACC <= '1';
 	
+	EN_R2 <= '1';
+	SEL_R2 <= "01";
+	
+	EN_R1 <= '1';
+	DATA <= "00100000";
+	SEL_R1 <= "00";
 	wait until rising_edge(CLK);
 	
 	--  4: (ACC <- [00000001 + 00000001 + 10000000 + 01000000 + 00000001 + 00100000])
