@@ -167,10 +167,12 @@ BEGIN
 	EN_R1 <= '1';
 	DATA <= "00100000";
 	SEL_R1 <= "00";
-	wait until rising_edge(CLK);
+	wait until rising_edge(CLK); --Double check results**
 	
 	--  4: (ACC <- [00000001 + 00000001 + 10000000 + 01000000 + 00000001 + 00100000])
 	
+	SEL_ACC <= "11";
+	EN_ACC <= '1';
 	wait until rising_edge(CLK);
 	
 	WAIT;                                                        

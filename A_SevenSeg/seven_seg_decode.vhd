@@ -11,9 +11,9 @@ use ieee.std_logic_1164.all;
 entity seven_seg_decode is
 
 	port(
-		input	 : in	 std_logic_vector(3 downto 0);		-- Binary input (0..15)
-		reset	 : in	 std_logic;								-- Asynchronous reset (sets output to blank)
-		en     : in  std_logic;								-- Input enable. Output is latched when 0
+		input	 : in	 std_logic_vector(3 downto 0); -- Binary input (0..15)
+		reset	 : in	 std_logic;							 -- Asynchronous reset (sets output to blank)
+		en     : in  std_logic;							 -- Input enable. Output is latched when 0
 		output : out std_logic_vector(6 downto 0)  -- Decoded output for each of the 7 LEDs
 	);
 
@@ -26,11 +26,14 @@ begin
 	process(input,reset,en)
 	begin
 	
+		-- Reset 'block' condition
 		if (reset = '1') then
 			output <= "0000000";
 
+		-- Enable select for 7-segmented display
 		elsif (en = '1') then
 			case input is
+				--Truth table outputs
 				when "0000" => output <= "1111110";
 				when "0001" => output <= "0110000";
 				when "0010" => output <= "1101101";
@@ -52,4 +55,4 @@ begin
 		end if;
 		
 	end process;
-end v1;
+end v1; -- End of architecture for 7-seg disp.

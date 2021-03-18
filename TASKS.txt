@@ -17,24 +17,17 @@ TASK B [Cascaded DFF]:
 
 TASK C [Controller Datapath]:
 ==============================
-1-
-2-
+1- Added a process block "init" to reset at the start of a simulation
+2- Added a process block "clk_process" to generate a clock signal (CLK).
 
-3
-a-
-b-
-c-
-d-
-e-
-f-
-g-
+3 Comments clarifying which sections of code are for which part.
+a- /
+b- / 
+c- /
+d- / 
+e- output requires double-checking 
+f- /
+g- output requires double-checking 
 
-4-
-
-
-TODO:
-======
--Comment all task code
--Finish testbench for TASKB
--Attempt TASKC
+4- 
 
