@@ -37,13 +37,6 @@ ARCHITECTURE v1 OF elec241_shift_register_test IS
 			data_out => data_out
 		);
 	
-	
-	init : PROCESS
-	BEGIN
-		WAIT;
-	END PROCESS init;
-	
-	
 	clk_gen: PROCESS
 		variable ck : std_logic;
 	BEGIN
