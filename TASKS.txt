@@ -1,1 +1,24 @@
-All tasks have been attempted.
+All tasks have been attempted fully.
+
+Task A:
+
+VHDL Design File
+A_SevenSeg\seven_seg_decode.vhd
+
+VHDL Test Bench File
+A_SevenSeg\simulation\modelsim\seven_seg_decode.vht
+
+
+Task B:
+
+VHDL Design File
+B_CascadedDFF\elec241_shift_register.vhd
+
+VHDL Test Bench File
+B_CascadedDFF\simulation\modelsim\elec241_shift_register_test.vht
+
+
+Task C:
+
+VHDL Test Bench File
+C_ControllerDatapath\simulation\modelsim\ControllerDatapath_vhd.vht
