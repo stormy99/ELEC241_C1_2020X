@@ -1,14 +1,13 @@
 # ELEC241_C1_2020X
-Authors: Brandon Normington, Thomas Bazley
+C1 coursework by Brandon Normington (10614655) and Thomas Bazley (10615428)
 
-Objective: "To create and test a fully commented set of VHDL components that can be re-used by other engineers."
+All tasks have been attempted.
 
-
-
-Task 1: 
+##Task 1: 
 Latching a 7-segment display decoder with a testbench.
 -
-Task 2: 
-Cascaded shift-register with a testbench.
+##Task 2: 
+Cascaded Flip-Flops with structural VHDL.
 -
-## Task 3: Testbench for a datapath sub-system.
+## Task 3: 
+Testbench for a data-path sub-system.
