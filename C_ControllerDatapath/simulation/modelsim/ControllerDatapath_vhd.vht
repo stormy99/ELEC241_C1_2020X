@@ -91,7 +91,7 @@ init : PROCESS
 BEGIN
 
 	RESET <= '0';
-	wait until clk = '0';
+	wait until CLK = '0';
 	RESET <= '1';
                                                         
    WAIT;                                           
@@ -102,7 +102,7 @@ clk_process : PROCESS
 BEGIN
 	
 	ck := '1';
-    for n in 1 to 30 loop
+    for n in 1 to 29 loop
         ck := not ck;
 		  wait for 500 ps;
         CLK <= ck;
@@ -241,11 +241,39 @@ BEGIN
 	EN_R1 <= '0';	--No more data needs to be loaded into R1
 	EN_R2 <= '0';	--No more data needs to be loaded into R2
 	
-	--  4: (ACC <- [00000001 + 00000001 + 10000000 + 01000000 + 00000001 + 00100000])
+	--  4: (ACC <- [00000001 + 00000001 + 10000000 + 01000000 + 00000001 + 00100000]) [Left-to-right]
 	
+	-- ACC initial value: 00000001
+	-- (ACC <- ACC + 00000001)
+	DATA <= "00000001"; 
+	SEL_SUM <= "00";
+	SEL_ACC <= "11"; 
+	EN_ACC <= '1'; 
+	wait until rising_edge(CLK); -- output: 00000010
+	
+	-- (ACC <- ACC + 10000000)
+	DATA <= "10000000"; 
+	SEL_SUM <= "00";
 	SEL_ACC <= "11";
-	EN_ACC <= '1';
-	wait until rising_edge(CLK);
+	wait until rising_edge(CLK); -- output: 10000010
+	
+	-- (ACC <- ACC + 01000000)
+	DATA <= "01000000"; 
+	SEL_SUM <= "00";
+	SEL_ACC <= "11";
+	wait until rising_edge(CLK); -- output: 11000010
+	
+	-- (ACC <- ACC + 00000001)
+	DATA <= "00000001"; 
+	SEL_SUM <= "00";
+	SEL_ACC <= "11";
+	wait until rising_edge(CLK); -- output: 11000011
+	
+	-- (ACC <- ACC + 00100000)
+	DATA <= "00100000"; 
+	SEL_SUM <= "00";
+	SEL_ACC <= "11";
+	wait until rising_edge(CLK); -- output: 11100011
 	
 	WAIT;                                                        
 END PROCESS always;  
