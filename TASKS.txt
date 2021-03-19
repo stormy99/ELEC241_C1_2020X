@@ -25,9 +25,10 @@ a- /
 b- / 
 c- /
 d- / 
-e- output requires double-checking 
+e- /
 f- /
-g- output requires double-checking 
+g- /
 
-4- 
+4- Addition performed in order from left-to-right onto ACC with asserts checking each stage of the addition used.
+(Modified the supplied sim_top_level.do script to make testing with the timing diagram easier)
 
