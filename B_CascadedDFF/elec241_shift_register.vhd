@@ -22,7 +22,7 @@ begin
 	process(clk, D)
 	begin
 		if (rising_edge(clk)) then
-			Q <= D;
+			Q <= D;		--Q only updates on rising edge of clock
 		end if;
 	end process;
 	
@@ -64,16 +64,16 @@ architecture rtl of elec241_shift_register is
 
 begin
 
-	U0 : d_flip_flop port map (clk, data_in, bit_Q(NUM_STAGES - 1));				--first flip flop
+	U0 : d_flip_flop port map (clk, data_in, bit_Q(NUM_STAGES - 1));	--first flip flop
 
 	DFF: for i in 1 to (NUM_STAGES - 1) generate
 		UX : d_flip_flop port map (clk, bit_Q(NUM_STAGES - i), bit_Q(NUM_STAGES - i - 1));	--generate remaining flip flops
 	end generate DFF;
 	
 	SIGNALS: for i in 0 to (NUM_STAGES - 1) generate
-		Q(NUM_STAGES - i - 1) <= bit_Q(NUM_STAGES - i - 1);			--set pins equal to flip flop signals
+		Q(NUM_STAGES - i - 1) <= bit_Q(NUM_STAGES - i - 1);		--set Q(n) equal to flip flop signals
 	end generate SIGNALS;
 	
-	data_out <= bit_Q(0);		--data_in shifted by NUM_STAGES
+	data_out <= bit_Q(0);	--data_in shifted by NUM_STAGES
 	
 end rtl;
