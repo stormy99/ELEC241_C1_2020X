@@ -102,7 +102,7 @@ clk_process : PROCESS
 BEGIN
 	
 	ck := '1';
-    for n in 1 to 29 loop
+    for n in 1 to 30 loop -- Task C ~29 cycles : 30 cycles are used
         ck := not ck;
 		  wait for 500 ps;
         CLK <= ck;
@@ -249,31 +249,58 @@ BEGIN
 	SEL_SUM <= "00";
 	SEL_ACC <= "11"; 
 	EN_ACC <= '1'; 
-	wait until rising_edge(CLK); -- output: 00000010
+	wait until rising_edge(CLK); 
+	
+	wait for 1 ps;
+	assert (ACC = "00000010")  
+   report "ACC holds unexpected data" severity error; -- output: 00000010
+	wait until falling_edge(CLK);
 	
 	-- (ACC <- ACC + 10000000)
 	DATA <= "10000000"; 
 	SEL_SUM <= "00";
 	SEL_ACC <= "11";
-	wait until rising_edge(CLK); -- output: 10000010
+	wait until rising_edge(CLK); 
+	
+	wait for 1 ps;
+	assert (ACC = "10000010")  
+   report "ACC holds unexpected data" severity error; -- output: 10000010
+	wait until falling_edge(CLK);
 	
 	-- (ACC <- ACC + 01000000)
 	DATA <= "01000000"; 
 	SEL_SUM <= "00";
 	SEL_ACC <= "11";
-	wait until rising_edge(CLK); -- output: 11000010
+	wait until rising_edge(CLK); 
+	
+	wait for 1 ps;
+	assert (ACC = "11000010")
+   report "ACC holds unexpected data" severity error; -- output: 11000010
+	wait until falling_edge(CLK);
 	
 	-- (ACC <- ACC + 00000001)
 	DATA <= "00000001"; 
 	SEL_SUM <= "00";
 	SEL_ACC <= "11";
-	wait until rising_edge(CLK); -- output: 11000011
+	wait until rising_edge(CLK); 
+	
+	wait for 1 ps;
+	assert (ACC = "11000011")
+   report "ACC holds unexpected data" severity error; -- output: 11000011
+	wait until falling_edge(CLK);
 	
 	-- (ACC <- ACC + 00100000)
 	DATA <= "00100000"; 
 	SEL_SUM <= "00";
 	SEL_ACC <= "11";
-	wait until rising_edge(CLK); -- output: 11100011
+	wait until rising_edge(CLK); 
+	
+	wait for 1 ps;
+	assert (ACC = "11100011")
+   report "ACC holds unexpected data" severity error; -- output: 11100011
+	wait until falling_edge(CLK);
+	
+	EN_ACC <= '0';	--No more data needs to be loaded into ACC
 	
 	WAIT;                                                        
 END PROCESS always;  
