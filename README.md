@@ -2,6 +2,7 @@
 C1 coursework by Brandon Normington (10614655) and Thomas Bazley (10615428)
 
 All tasks have been attempted.
+To generate waveforms use `restart` and `run -All`.
 
 
 ## Task 1: 
