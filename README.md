@@ -8,7 +8,7 @@ To generate waveforms use `restart` and `run -All`.
 
 ## Task 1 - Latching a 7-segment display decoder with a testbench.
 
-[VHDL Design File](https://github.com/stormy99/ELEC241_C1_2020X/blob/main/A_SevenSeg/binary_counter.vhd)
+[VHDL Design File](https://github.com/stormy99/ELEC241_C1_2020X/blob/main/A_SevenSeg/seven_seg_decode.vhd)
 
 [VHDL Test Bench File](https://github.com/stormy99/ELEC241_C1_2020X/blob/main/A_SevenSeg/simulation/modelsim/seven_seg_decode.vht)
 
